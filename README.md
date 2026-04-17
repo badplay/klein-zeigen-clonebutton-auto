@@ -7,13 +7,14 @@ Ein UserScript für Tampermonkey, das automatisches Neu-Einstellen, Duplizieren 
 - **Duplizieren:** Erstellt eine Kopie der Anzeige, Original bleibt erhalten
 - **Smart neu einstellen:** Löscht das Original und erstellt eine neue Anzeige
 - **Auto-Run:** Automatisches Neu-Einstellen mehrerer Anzeigen nach Zeitplan (Warte-Tage konfigurierbar)
-- **Autostart-Countdown:** Beim Öffnen von kleinanzeigen.de wird ein 10-Sekunden-Countdown angezeigt — abbrechbar
+- **Interaktiver Start-Countdown:** Sowohl beim Auto-Start als auch beim manuellen Start erscheint ein 10-Sekunden-Countdown-Banner mit **Abbrechen**-Option.
 - **Batch-Pause:** Nach konfigurierbarer Anzahl Anzeigen automatische Pause (Anti-Ban)
 - **Alle erneuern:** Checkbox um alle Anzeigen auf einmal neu einzustellen
-- **Minimier-Button:** Panel lässt sich minimieren — zeigt nächsten Run-Termin an
-- **Inline-Buttons:** „Smart neu einstellen"-Button direkt in der Meine-Anzeigen-Übersicht
-- **Edit-Page-Toolbar:** „Duplizieren" und „Smart"-Buttons auf der Bearbeitungsseite
+- **Minimier-Button:** Das Control Panel lässt sich minimieren — zeigt im minimierten Zustand den nächsten Run-Termin an
+- **Inline-Buttons:** „Smart neu einstellen“-Button direkt in der Meine-Anzeigen-Übersicht
+- **Edit-Page-Toolbar:** „Duplizieren“ und „Smart neu einstellen“-Buttons auf der Bearbeitungsseite (kein überlappendes Panel)
 - **Robuste Erkennung:** Multi-Strategie Seitendetection, resilient gegen Website-Änderungen
+- **Professionelles UI:** Klares, dunkles Design für das Control Panel und die Toolbar.
 
 ## Installation
 
@@ -34,27 +35,28 @@ Ein UserScript für Tampermonkey, das automatisches Neu-Einstellen, Duplizieren 
 
 ### Auto-Run (Zeitgesteuert)
 
-1. Im Panel **„Warte (Tage)"** einstellen — z. B. `7` für wöchentlichen Lauf
-2. **„Auto-Start"** Checkbox aktivieren
-3. **„Anzahl Anzeigen"** eintragen oder **„Alle"** aktivieren
-4. Auf **„Speichern"** klicken
-5. Beim nächsten Öffnen von kleinanzeigen.de startet der Countdown automatisch
+1. Im Panel **„Warte (Tage)“** einstellen — z. B. `7` für wöchentlichen Lauf
+2. **„Auto-Start“** Checkbox aktivieren
+3. **„Anzahl Anzeigen“** eintragen oder **„Alle“** aktivieren
+4. Auf **„Einstellungen speichern“** klicken
+5. Beim nächsten Öffnen von kleinanzeigen.de (nach Erreichen des Zieldatums) startet der Countdown automatisch.
 
 ### Manueller Start
 
 1. kleinanzeigen.de → Meine Anzeigen öffnen
-2. Im Panel auf **„▶ Starten"** klicken
+2. Im Panel auf **„▶ Starten“** klicken
+3. Ein 10-Sekunden-Countdown erscheint, den Sie bei Bedarf abbrechen können.
 
 ### Direkt auf der Bearbeitungsseite
 
-- Navigiere zu einer Anzeige → „Bearbeiten"
+- Navigiere zu einer Anzeige → „Bearbeiten“
 - Unten rechts erscheint eine Toolbar mit:
   - **Duplizieren:** Kopie erstellen, Original bleibt
-  - **Smart:** Original löschen, neue Anzeige erstellen
+  - **Smart neu einstellen:** Original löschen, neue Anzeige erstellen
 
 ### Über Meine-Anzeigen (Inline)
 
-- Neben jedem „Bearbeiten"-Link erscheint **„Smart neu einstellen"**
+- Neben jedem „Bearbeiten“-Link erscheint **„Smart neu“**
 - Klick öffnet Bearbeitungsseite und führt Aktion automatisch aus
 
 ## Einstellungen (Panel)
@@ -69,12 +71,13 @@ Ein UserScript für Tampermonkey, das automatisches Neu-Einstellen, Duplizieren 
 | Batch-Größe | Anzeigen pro Batch vor Pause |
 | Batch-Pause (min) | Pausenzeit zwischen Batches in Minuten |
 | Nächster Run | Berechnetes Datum des nächsten Runs |
+| Status | Aktueller Status des Bots |
 
 ## Technische Details
 
 ### Berechtigungen
 
-Das Script verwendet `@grant none` — keine erweiterten Tampermonkey-Berechtigungen nötig.
+Das Script verwendet `@grant GM_getValue` und `@grant GM_setValue` für die Speicherung der Einstellungen und `@grant none` für andere erweiterte Tampermonkey-Berechtigungen.
 
 ### Unterstützte URLs
 
@@ -89,9 +92,9 @@ Das Script verwendet `@grant none` — keine erweiterten Tampermonkey-Berechtigu
 Browser öffnen
     → kleinanzeigen.de aufrufen
     → Script prüft: Ist Zieldatum erreicht?
-    → Ja: 10s Countdown-Banner erscheint
+    → Ja: 10s Countdown-Banner erscheint (mit Abbrechen-Option)
     → Nicht abgebrochen: Navigiert zu Meine Anzeigen
-    → Anzeigen werden nacheinander neu eingestellt
+    → Anzeigen werden nacheinander neu eingestellt (mit Batch-Pausen)
     → Nach Abschluss: Zurück zur Übersicht
 ```
 
@@ -102,13 +105,14 @@ Browser öffnen
 - Seite neu laden (`F5`)
 
 **Script startet nicht automatisch**
-- „Auto-Start" Checkbox im Panel aktivieren
-- „Speichern" klicken
-- Prüfe ob „Nächster Run" ein Datum anzeigt
+- „Auto-Start“ Checkbox im Panel aktivieren
+- „Einstellungen speichern“ klicken
+- Prüfe ob „Nächster Run“ ein Datum anzeigt
+- Stelle sicher, dass das aktuelle Datum das „Nächster Run“-Datum erreicht oder überschritten hat.
 
 **Anzeigen werden nicht gefunden**
 - Stelle sicher, dass du auf `m-meine-anzeigen.html` bist
-- Seite vollständig laden lassen, dann „▶ Starten" klicken
+- Seite vollständig laden lassen, dann „▶ Starten“ klicken
 
 **Fehler 500 von Kleinanzeigen**
 - Batch-Größe reduzieren (z. B. auf `3`)
