@@ -25,11 +25,17 @@ Ein UserScript für Tampermonkey, das automatisches Neu-Einstellen, Duplizieren 
 
 ### Script installieren
 
-1. Tampermonkey öffnen → **Neues Script erstellen**
-2. Inhalt von `kleinanzeigen-backup.user.js` einfügen
-3. Speichern (`Strg+S`)
+Klicke auf den Button, um das UserScript direkt in Tampermonkey zu installieren:
 
-> Auto-Updates funktionieren, sobald das Script auf GitHub gehostet und `@updateURL` / `@downloadURL` gesetzt sind.
+[![Install Script](https://img.shields.io/badge/Install%20Script-Tampermonkey-blue?style=for-the-badge&logo=tampermonkey)](https://github.com/ecomcodeLab/klein-zeigen-clonebutton-auto/raw/main/kleinanzeigen-backup.user.js)
+
+Alternativ:
+
+1.  **Tampermonkey öffnen:** Klicke auf das Tampermonkey-Icon in deinem Browser und wähle "Neues Skript erstellen".
+2.  **Code einfügen:** Lösche den vorhandenen Beispielcode und füge den gesamten Inhalt der Datei `kleinanzeigen-backup.user.js` ein.
+3.  **Speichern:** Speichere das Skript (meistens `Strg+S` oder über das Dateimenü).
+
+> **Hinweis:** Automatische Updates funktionieren, sobald das Skript auf GitHub gehostet und die `@updateURL` / `@downloadURL` Header im Skript korrekt gesetzt sind.
 
 ## Verwendung
 
@@ -131,6 +137,7 @@ Siehe [CHANGELOG.md](CHANGELOG.md)
 - **Original-Script:** J05HI — [Original Gist](https://gist.github.com/J05HI/9f3fc7a496e8baeff5a56e0c1a710bb5)
 - **Helper-Idee:** panzli — [GitHub](https://github.com/panzli)
 - **Erweiterte Version:** OldRon1977 — [GitHub](https://github.com/OldRon1977)
+- **Developer:** ecomcodeLab — [GitHub](https://github.com/ecomcodeLab)
 
 > Dieses Projekt wurde als persönliches Test- und Lernprojekt erstellt und erweitert.  
 > Teile des Codes basieren auf Code-Snippets aus den Credits sowie Vibe-Coding-Sessions.
