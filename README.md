@@ -7,6 +7,7 @@ Ein UserScript für Tampermonkey, das automatisches Neu-Einstellen, Duplizieren 
 - **Duplizieren:** Erstellt eine Kopie der Anzeige, Original bleibt erhalten
 - **Smart neu einstellen:** Löscht das Original und erstellt eine neue Anzeige
 - **Auto-Run:** Automatisches Neu-Einstellen mehrerer Anzeigen nach Zeitplan (Warte-Tage konfigurierbar)
+- **Abbruch jederzeit:** Der automatische Lauf kann über einen Button im Statusfenster (unten links) jederzeit sicher abgebrochen werden, ohne die laufenden Bearbeitungen zu beschädigen.
 - **Interaktiver Start-Countdown:** Sowohl beim Auto-Start als auch beim manuellen Start erscheint ein 10-Sekunden-Countdown-Banner mit **Abbrechen**-Option.
 - **Batch-Pause:** Nach konfigurierbarer Anzahl Anzeigen automatische Pause (Anti-Ban)
 - **Alle erneuern:** Checkbox um alle Anzeigen auf einmal neu einzustellen
@@ -43,7 +44,7 @@ Alternativ:
 
 1. Im Panel **„Warte (Tage)“** einstellen — z. B. `7` für wöchentlichen Lauf
 2. **„Auto-Start“** Checkbox aktivieren
-3. **„Anzahl Anzeigen“** eintragen oder **„Alle“** aktivieren
+3. **„Gesamtanzahl“** eintragen oder **„Alle“** aktivieren
 4. Auf **„Einstellungen speichern“** klicken
 5. Beim nächsten Öffnen von kleinanzeigen.de (nach Erreichen des Zieldatums) startet der Countdown automatisch.
 
@@ -52,6 +53,7 @@ Alternativ:
 1. kleinanzeigen.de → Meine Anzeigen öffnen
 2. Im Panel auf **„▶ Starten“** klicken
 3. Ein 10-Sekunden-Countdown erscheint, den Sie bei Bedarf abbrechen können.
+4. *(Neu)* Falls der Bot bereits läuft, erscheint unten links ein Status-Fenster. Hier können Sie den Durchlauf über den roten **„Abbrechen“**-Button jederzeit vorzeitig stoppen.
 
 ### Direkt auf der Bearbeitungsseite
 
@@ -70,12 +72,11 @@ Alternativ:
 | Einstellung | Beschreibung |
 |---|---|
 | Warte (Tage) | Tage bis zum nächsten Auto-Run |
-| Anzahl Anzeigen | Wie viele Anzeigen erneuert werden |
-| Alle erneuern | Alle Anzeigen auf einmal erneuern |
+| Gesamtanzahl | Wie viele Anzeigen **insgesamt** im Durchlauf erneuert werden |
+| Alle erneuern | Alle gefundenen Anzeigen auf einmal erneuern |
 | Auto-Start | Automatischen Start aktivieren/deaktivieren |
-| Warte vor Start (s) | Sekunden bis zum Auto-Start (Countdown) |
-| Batch-Größe | Anzeigen pro Batch vor Pause |
-| Batch-Pause (min) | Pausenzeit zwischen Batches in Minuten |
+| Pause nach (Stk) | Nach wie vielen **bearbeiteten Anzeigen** eine Pause gemacht wird (Anti-Ban) |
+| Pause (Min) | Pausenzeit zwischen Batches in Minuten |
 | Nächster Run | Berechnetes Datum des nächsten Runs |
 | Status | Aktueller Status des Bots |
 
@@ -121,7 +122,7 @@ Browser öffnen
 - Seite vollständig laden lassen, dann „▶ Starten“ klicken
 
 **Fehler 500 von Kleinanzeigen**
-- Batch-Größe reduzieren (z. B. auf `3`)
+- Batch-Größe (Pause nach) reduzieren (z. B. auf `3`)
 - Batch-Pause erhöhen (z. B. auf `8` Minuten)
 
 **Löschung schlägt fehl**
